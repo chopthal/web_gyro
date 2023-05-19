@@ -4,7 +4,7 @@ const gyroZ = document.querySelector(".gyro-z");
 const sensorText = document.querySelector(".sensor");
 const permissionBtn = document.querySelector(".permission-btn");
 
-permissionBtn.addEventListener("onclick", () => onClick);
+permissionBtn.addEventListener("click", onClick);
 
 window.addEventListener("deviceorientation", handleOrientation);
 
@@ -26,6 +26,7 @@ function handleOrientation(event) {
 }
 
 function onClick() {
+  console.log("clicked!");
   if (typeof DeviceMotionEvent.requestPermission === "function") {
     // Handle iOS 13+ devices.
     DeviceMotionEvent.requestPermission()
