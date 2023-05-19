@@ -10,9 +10,11 @@ sensor.onreading = () => {
   console.log("Angular velocity around the Y-axis " + sensor.y);
   console.log("Angular velocity around the Z-axis " + sensor.z);
 
-  gyroX.innerHTML = x;
-  gyroY.innerHTML = y;
-  gyroZ.innerHTML = z;
+  console.log("Reading...");
+
+  gyroX.innerHTML = sensor.x;
+  gyroY.innerHTML = sensor.y;
+  gyroZ.innerHTML = sensor.z;
 };
 
 sensor.onerror = (event) => console.log(event.error.name, event.error.message);
