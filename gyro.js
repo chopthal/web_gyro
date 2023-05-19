@@ -6,22 +6,20 @@ const permissionBtn = document.querySelector(".permission-btn");
 
 permissionBtn.addEventListener("click", onClick);
 
-window.addEventListener("deviceorientation", handleOrientation);
+window.addEventListener("devicemotion", handleMotion, true);
 
-function handleOrientation(event) {
-  const alpha = event.alpha;
-  const beta = event.beta;
-  const gamma = event.gamma;
+function handleMotion(event) {
+  // console.log(alpha);
+  // console.log(beta);
+  // console.log(gamma);
 
-  console.log(alpha);
-  console.log(beta);
-  console.log(gamma);
+  console.log(event.acceleration.x);
 
   sensorText.innerHTML = "Reading...";
 
-  gyroX.innerHTML = alpha;
-  gyroY.innerHTML = beta;
-  gyroZ.innerHTML = gamma;
+  gyroX.innerHTML = event.acceleration.x;
+  gyroY.innerHTML = event.acceleration.y;
+  gyroZ.innerHTML = event.acceleration.z;
   // Do stuff...
 }
 
