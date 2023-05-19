@@ -4,6 +4,7 @@ sensor.start();
 const gyroX = document.querySelector(".gyro-x");
 const gyroY = document.querySelector(".gyro-y");
 const gyroZ = document.querySelector(".gyro-z");
+const sensorText = document.querySelector(".sensor");
 
 sensor.onreading = () => {
   console.log("Angular velocity around the X-axis " + sensor.x);
@@ -11,6 +12,7 @@ sensor.onreading = () => {
   console.log("Angular velocity around the Z-axis " + sensor.z);
 
   console.log("Reading...");
+  sensorText = "Reading...";
 
   gyroX.innerHTML = sensor.x;
   gyroY.innerHTML = sensor.y;
