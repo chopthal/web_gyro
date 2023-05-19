@@ -44,28 +44,64 @@ function onClick() {
   }
 }
 
-// let sensor = new Gyroscope();
-// sensor.start();
+function rand() {
+  return Math.random();
+}
 
-// const gyroX = document.querySelector(".gyro-x");
-// const gyroY = document.querySelector(".gyro-y");
-// const gyroZ = document.querySelector(".gyro-z");
-// const sensorText = document.querySelector(".sensor");
+var time = new Date();
 
-// sensor.onreading = () => {
-//   console.log("Angular velocity around the X-axis " + sensor.x);
-//   console.log("Angular velocity around the Y-axis " + sensor.y);
-//   console.log("Angular velocity around the Z-axis " + sensor.z);
+var trace1 = {
+  x: [],
+  y: [],
+  mode: "lines",
+  line: {
+    color: "#80CAF6",
+    shape: "spline",
+  },
+};
 
-//   console.log("Reading...");
-//   sensorText.innerHTML = "Reading...";
+var trace2 = {
+  x: [],
+  y: [],
+  xaxis: "x2",
+  yaxis: "y2",
+  mode: "lines",
+  line: { color: "#DF56F1" },
+};
 
-//   gyroX.innerHTML = sensor.x;
-//   gyroY.innerHTML = sensor.y;
-//   gyroZ.innerHTML = sensor.z;
-// };
+var layout = {
+  xaxis: {
+    type: "date",
+    domain: [0, 1],
+    showticklabels: false,
+  },
+  yaxis: { domain: [0.6, 1] },
+  xaxis2: {
+    type: "date",
+    anchor: "y2",
+    domain: [0, 1],
+  },
+  yaxis2: {
+    anchor: "x2",
+    domain: [0, 0.4],
+  },
+};
 
-// sensor.onerror = (event) => {
-//   console.log(event.error.name, event.error.message);
-//   sensorText.innerHTML = event.error.message;
-// };
+var data = [trace1, trace2];
+
+Plotly.plot("graph", data, layout);
+
+var cnt = 0;
+
+var interval = setInterval(function () {
+  var time = new Date();
+
+  var update = {
+    x: [[time], [time]],
+    y: [[rand()], [rand()]],
+  };
+
+  Plotly.extendTraces("graph", update, [0, 1]);
+
+  if (cnt === 100) clearInterval(interval);
+}, 1000);
