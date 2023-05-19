@@ -19,7 +19,10 @@ sensor.onreading = () => {
   gyroZ.innerHTML = sensor.z;
 };
 
-sensor.onerror = (event) => console.log(event.error.name, event.error.message);
+sensor.onerror = (event) => {
+  console.log(event.error.name, event.error.message);
+  sensorText.innerHTML = event.error.message;
+};
 
 // // DeviceMotion 이벤트
 // window.addEventListener("devicemotion", devicemotionHandler);
