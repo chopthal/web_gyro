@@ -2,6 +2,9 @@ const gyroX = document.querySelector(".gyro-x");
 const gyroY = document.querySelector(".gyro-y");
 const gyroZ = document.querySelector(".gyro-z");
 const sensorText = document.querySelector(".sensor");
+const permissionBtn = document.querySelector(".permission-btn");
+
+permissionBtn.addEventListener("onclick", () => onClick);
 
 window.addEventListener("deviceorientation", handleOrientation);
 
