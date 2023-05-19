@@ -1,3 +1,8 @@
+const gyroX = document.querySelector(".gyro-x");
+const gyroY = document.querySelector(".gyro-y");
+const gyroZ = document.querySelector(".gyro-z");
+const sensorText = document.querySelector(".sensor");
+
 window.addEventListener("deviceorientation", handleOrientation);
 
 function handleOrientation(event) {
@@ -8,6 +13,12 @@ function handleOrientation(event) {
   console.log(alpha);
   console.log(beta);
   console.log(gamma);
+
+  sensorText.innerHTML = "Reading...";
+
+  gyroX.innerHTML = alpha;
+  gyroY.innerHTML = beta;
+  gyroZ.innerHTML = gamma;
   // Do stuff...
 }
 
