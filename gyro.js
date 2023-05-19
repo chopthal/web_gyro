@@ -12,7 +12,7 @@ sensor.onreading = () => {
   console.log("Angular velocity around the Z-axis " + sensor.z);
 
   console.log("Reading...");
-  sensorText = "Reading...";
+  sensorText.innerHTML = "Reading...";
 
   gyroX.innerHTML = sensor.x;
   gyroY.innerHTML = sensor.y;
