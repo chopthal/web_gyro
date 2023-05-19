@@ -6,6 +6,9 @@ const startBtn = document.querySelector(".start-btn");
 const stopBtn = document.querySelector(".stop-btn");
 let isStop = false;
 let x = 0;
+let y = 0;
+let z = 0;
+
 startBtn.addEventListener("click", onClickStart);
 stopBtn.addEventListener("click", () => {
   isStop = true;
@@ -18,6 +21,8 @@ function handleMotion(event) {
   sensorText.innerHTML = "Reading...";
 
   x = event.acceleration.x;
+  y = event.acceleration.y;
+  z = event.acceleration.z;
 
   gyroX.innerHTML = event.acceleration.x;
   gyroY.innerHTML = event.acceleration.y;
@@ -42,9 +47,25 @@ function onClickStart() {
   }
   const interval = setInterval(function () {
     Plotly.extendTraces(
-      "graph",
+      "graph-x",
       {
         y: [[x]],
+      },
+      [0]
+    );
+
+    Plotly.extendTraces(
+      "graph-y",
+      {
+        y: [[y]],
+      },
+      [0]
+    );
+
+    Plotly.extendTraces(
+      "graph-z",
+      {
+        y: [[z]],
       },
       [0]
     );
@@ -53,11 +74,23 @@ function onClickStart() {
   }, 300);
 }
 
-function rand() {
-  return Math.random();
-}
+Plotly.plot("graph-x", [
+  {
+    y: [],
+    mode: "lines",
+    line: { color: "#80CAF6" },
+  },
+]);
 
-Plotly.plot("graph", [
+Plotly.plot("graph-y", [
+  {
+    y: [],
+    mode: "lines",
+    line: { color: "#80CAF6" },
+  },
+]);
+
+Plotly.plot("graph-z", [
   {
     y: [],
     mode: "lines",
