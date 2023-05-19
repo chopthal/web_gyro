@@ -1,5 +1,8 @@
 // DeviceMotion 이벤트
 window.addEventListener("devicemotion", devicemotionHandler);
+const gyroX = document.querySelector(".gyro-x");
+const gyroY = document.querySelector(".gyro-y");
+const gyroZ = document.querySelector(".gyro-z");
 
 // 가속도 변화
 function devicemotionHandler(event) {
