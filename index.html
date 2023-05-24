@@ -9,15 +9,14 @@
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   </head>
   <body>
-    <h1>Hello6!</h1>
-    <h2 class="sensor">Sensor</h2>
-    <div class="gyro-x">X</div>
-    <div class="gyro-y">Y</div>
-    <div class="gyro-z">Z</div>
+    <div><input class="time-input" type="number" /> sec</div>
     <button class="start-btn">Start</button>
     <button class="stop-btn">Stop</button>
-    <div id="graph-x"></div>
-    <!-- <div id="graph-y"></div>
-    <div id="graph-z"></div> -->
+    <button class="clear-btn">Clear</button>
+
+    <div id="graph"></div>
+    <button class="analyze-btn">Analyze</button>
+    <p class="average"></p>
+    <p class="max"></p>
   </body>
 </html>

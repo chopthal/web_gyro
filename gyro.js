@@ -1,35 +1,29 @@
-const gyroX = document.querySelector(".gyro-x");
-const gyroY = document.querySelector(".gyro-y");
-const gyroZ = document.querySelector(".gyro-z");
-const sensorText = document.querySelector(".sensor");
 const startBtn = document.querySelector(".start-btn");
 const stopBtn = document.querySelector(".stop-btn");
-let isStop = false;
+const clearBtn = document.querySelector(".clear-btn");
+const analyzeBtn = document.querySelector(".analyze-btn");
+const timeInput = document.querySelector(".time-input");
+const avgResult = document.querySelector(".average");
+const maxResult = document.querySelector(".max");
+
+initilizePlot();
+
 let x = 0;
 let y = 0;
 let z = 0;
+let logX = [];
+let logY = [];
+let logZ = [];
+
+let interval = [];
 
 startBtn.addEventListener("click", onClickStart);
-stopBtn.addEventListener("click", () => {
-  isStop = true;
-});
-
-window.addEventListener("devicemotion", handleMotion, true);
-
-function handleMotion(event) {
-  console.log(event.acceleration.x);
-  sensorText.innerHTML = "Reading...";
-
-  x = event.acceleration.x;
-  y = event.acceleration.y;
-  z = event.acceleration.z;
-
-  gyroX.innerHTML = event.acceleration.x;
-  gyroY.innerHTML = event.acceleration.y;
-  gyroZ.innerHTML = event.acceleration.z;
-}
+stopBtn.addEventListener("click", onClickStop);
+clearBtn.addEventListener("click", onClickClear);
+analyzeBtn.addEventListener("click", onClickAnalyze);
 
 function onClickStart() {
+  window.addEventListener("devicemotion", handleMotion, true);
   if (typeof DeviceMotionEvent.requestPermission === "function") {
     // Handle iOS 13+ devices.
     DeviceMotionEvent.requestPermission()
@@ -45,52 +39,87 @@ function onClickStart() {
     // Handle regular non iOS 13+ devices.
     window.addEventListener("devicemotion", handleMotion);
   }
-  const interval = setInterval(function () {
+  onClickStop();
+  interval = setInterval(function () {
     Plotly.extendTraces(
-      "graph-x",
+      "graph",
       {
         y: [[x], [y], [z]],
       },
       [0, 1, 2]
     );
-
-    if (isStop === true) clearInterval(interval);
+    logX = [...logX, x];
+    logY = [...logY, y];
+    logZ = [...logZ, z];
   }, 300);
+  if (!timeInput.value) {
+    return;
+  }
+  setTimeout(() => {
+    clearInterval(interval);
+  }, parseFloat(timeInput.value) * 1000);
 }
 
-Plotly.plot("graph-x", [
-  {
-    y: [0, 0, 0],
-    mode: "lines",
-    line: { color: "#80CAF6" },
-    name: "X",
-  },
-  {
-    y: [1, 2, 3],
-    mode: "lines",
-    line: { color: "#FF5733" },
-    name: "Y",
-  },
-  {
-    y: [4, 5, 6],
-    mode: "lines",
-    line: { color: "#36F708" },
-    name: "Z",
-  },
-]);
+function onClickStop() {
+  clearInterval(interval);
+}
 
-// Plotly.plot("graph-y", [
-//   {
-//     y: [],
-//     mode: "lines",
-//     line: { color: "#80CAF6" },
-//   },
-// ]);
+function onClickClear() {
+  x = 0;
+  y = 0;
+  z = 0;
+  logX = [];
+  logY = [];
+  logZ = [];
 
-// Plotly.plot("graph-z", [
-//   {
-//     y: [],
-//     mode: "lines",
-//     line: { color: "#80CAF6" },
-//   },
-// ]);
+  onClickStop();
+  initilizePlot();
+}
+
+function onClickAnalyze() {
+  avgResult.innerHTML = `[Average] X : ${average(logX)}, Y : ${average(
+    logY
+  )}, Z : ${average(logZ)}`;
+
+  maxResult.innerHTML = `[Max peak(abs)] X : ${maxPeak(logX)}, Y : ${maxPeak(
+    logY
+  )}, Z : ${maxPeak(logZ)}`;
+}
+
+function initilizePlot() {
+  Plotly.newPlot("graph", [
+    {
+      y: [],
+      mode: "lines",
+      line: { color: "#80CAF6" },
+      name: "X",
+    },
+    {
+      y: [],
+      mode: "lines",
+      line: { color: "#FF5733" },
+      name: "Y",
+    },
+    {
+      y: [],
+      mode: "lines",
+      line: { color: "#36F708" },
+      name: "Z",
+    },
+  ]);
+}
+
+function handleMotion(event) {
+  x = Math.round(event.acceleration.x);
+  y = Math.round(event.acceleration.y);
+  z = Math.round(event.acceleration.z);
+}
+
+function average(arr) {
+  const result = arr.reduce((p, c) => p + c, 0) / arr.length;
+  return result;
+}
+
+function maxPeak(arr) {
+  return Math.max(...arr.map(Math.abs));
+}
