@@ -49,25 +49,9 @@ function onClickStart() {
     Plotly.extendTraces(
       "graph-x",
       {
-        y: [[x]],
+        y: [[x], [y], [z]],
       },
-      [0]
-    );
-
-    Plotly.extendTraces(
-      "graph-y",
-      {
-        y: [[y]],
-      },
-      [0]
-    );
-
-    Plotly.extendTraces(
-      "graph-z",
-      {
-        y: [[z]],
-      },
-      [0]
+      [0, 1, 2]
     );
 
     if (isStop === true) clearInterval(interval);
@@ -76,24 +60,37 @@ function onClickStart() {
 
 Plotly.plot("graph-x", [
   {
-    y: [],
+    y: [0, 0, 0],
     mode: "lines",
     line: { color: "#80CAF6" },
+    name: "X",
+  },
+  {
+    y: [1, 2, 3],
+    mode: "lines",
+    line: { color: "#FF5733" },
+    name: "Y",
+  },
+  {
+    y: [4, 5, 6],
+    mode: "lines",
+    line: { color: "#36F708" },
+    name: "Z",
   },
 ]);
 
-Plotly.plot("graph-y", [
-  {
-    y: [],
-    mode: "lines",
-    line: { color: "#80CAF6" },
-  },
-]);
+// Plotly.plot("graph-y", [
+//   {
+//     y: [],
+//     mode: "lines",
+//     line: { color: "#80CAF6" },
+//   },
+// ]);
 
-Plotly.plot("graph-z", [
-  {
-    y: [],
-    mode: "lines",
-    line: { color: "#80CAF6" },
-  },
-]);
+// Plotly.plot("graph-z", [
+//   {
+//     y: [],
+//     mode: "lines",
+//     line: { color: "#80CAF6" },
+//   },
+// ]);
