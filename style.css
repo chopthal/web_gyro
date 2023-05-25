@@ -1,3 +1,10 @@
+body {
+  display: flex;
+  width: 95vw;
+  flex-direction: column;
+  align-items: center;
+}
+
 .setting {
   width: 100vw;
   display: flex;
@@ -7,25 +14,52 @@
 }
 
 .sec-input {
-  width: 50%;
-  height: 20px;
+  display: flex;
+  width: 88%;
+  height: 40px;
+}
+
+.sec-input p {
+  margin-left: 5px;
+}
+
+.time-input {
+  height: 80%;
 }
 
 .button-box {
-  width: 50%;
-  height: 50px;
+  width: 90%;
+  height: 120px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 10px;
 }
 
-.button-box button {
-  width: calc(100% / 3 - 1%);
-  padding: 1px;
+.button-box div {
+  height: 48%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.start-btn {
+  height: 95%;
+  width: 98%;
+  font-size: 20px;
+}
+
+.stop-box button {
+  height: 95%;
+  width: 48%;
+  margin-top: 5px;
+  font-size: 20px;
 }
 
 .analyze-box {
-  width: 100vw;
+  width: 93%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -33,17 +67,8 @@
 }
 
 .analyze-box button {
-  width: calc(100% / 2);
+  width: 100%;
   padding: 1px;
-  height: 50px;
+  height: 70px;
+  font-size: 20px;
 }
-
-/* .graph-box {
-  display: flex;
-  width: 100vw;
-  height: calc(100vw / 2);
-}
-
-.graph-box #graph {
-  width: 30%;
-} */
