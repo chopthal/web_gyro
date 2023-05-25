@@ -6,7 +6,7 @@ const timeInput = document.querySelector(".time-input");
 const avgResult = document.querySelector(".average");
 const maxResult = document.querySelector(".max");
 
-const digit = 4;
+const digit = 6;
 
 initilizePlot();
 
@@ -88,8 +88,8 @@ function onClickAnalyze() {
   maxResult.innerHTML = `[Max peak(abs)] X : ${maxPeak(
     logX
   ).toLocaleString()}, Y : ${maxPeak(logY).toLocaleString()}, Z : ${maxPeak(
-    logZ.toLocaleString()
-  )}`;
+    logZ
+  ).toLocaleString()}`;
 }
 
 function initilizePlot() {
