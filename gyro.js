@@ -81,7 +81,9 @@ function onClickClear() {
 function onClickAnalyze() {
   avgResult.innerHTML = `[Average] X : ${Math.round(
     average(logX)
-  )}, Y : ${Math.round(average(logY))}, Z : ${Math.round(average(logZ))}`;
+  ).toLocaleString()}, Y : ${Math.round(
+    average(logY)
+  ).toLocaleString()}, Z : ${Math.round(average(logZ)).toLocaleString()}`;
 
   maxResult.innerHTML = `[Max peak(abs)] X : ${maxPeak(logX)}, Y : ${maxPeak(
     logY
