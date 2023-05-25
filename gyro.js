@@ -7,6 +7,10 @@ const avgResult = document.querySelector(".average");
 const maxResult = document.querySelector(".max");
 
 const digit = 6;
+// const plotLayout = {
+//   autosize: false,
+//   width :
+// }
 
 initilizePlot();
 

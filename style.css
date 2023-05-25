@@ -37,3 +37,13 @@
   padding: 1px;
   height: 50px;
 }
+
+/* .graph-box {
+  display: flex;
+  width: 100vw;
+  height: calc(100vw / 2);
+}
+
+.graph-box #graph {
+  width: 30%;
+} */
