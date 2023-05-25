@@ -7,16 +7,26 @@
     <title>Document</title>
     <script src="gyro.js" defer></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div><input class="time-input" type="number" /> sec</div>
-    <button class="start-btn">Start</button>
-    <button class="stop-btn">Stop</button>
-    <button class="clear-btn">Clear</button>
-
-    <div id="graph"></div>
-    <button class="analyze-btn">Analyze</button>
-    <p class="average"></p>
-    <p class="max"></p>
+    <article class="setting">
+      <section class="sec-input">
+        <input class="time-input" type="number" /> sec
+      </section>
+      <section class="button-box">
+        <button class="start-btn">Start</button>
+        <button class="stop-btn">Stop</button>
+        <button class="clear-btn">Clear</button>
+      </section>
+    </article>
+    <article>
+      <div id="graph"></div>
+    </article>
+    <article class="analyze-box">
+      <button class="analyze-btn">Analyze</button>
+      <p class="average"></p>
+      <p class="max"></p>
+    </article>
   </body>
 </html>
