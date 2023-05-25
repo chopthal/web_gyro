@@ -6,11 +6,8 @@ const timeInput = document.querySelector(".time-input");
 const avgResult = document.querySelector(".average");
 const maxResult = document.querySelector(".max");
 
-const digit = 6;
-// const plotLayout = {
-//   autosize: false,
-//   width :
-// }
+const digit = 6; // 10^n
+const measureInterval = 100; // [ms]
 
 initilizePlot();
 
@@ -57,7 +54,7 @@ function onClickStart() {
     logX = [...logX, x];
     logY = [...logY, y];
     logZ = [...logZ, z];
-  }, 300);
+  }, measureInterval);
   if (!timeInput.value) {
     return;
   }
