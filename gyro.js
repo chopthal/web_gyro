@@ -5,6 +5,15 @@ const analyzeBtn = document.querySelector(".analyze-btn");
 const timeInput = document.querySelector(".time-input");
 const avgResult = document.querySelector(".average");
 const maxResult = document.querySelector(".max");
+const xAvg = document.querySelector(".x-avg");
+const yAvg = document.querySelector(".y-avg");
+const zAvg = document.querySelector(".z-avg");
+const xRmse = document.querySelector(".x-rmse");
+const yRmse = document.querySelector(".y-rmse");
+const zRmse = document.querySelector(".z-rmse");
+const xMax = document.querySelector(".x-max");
+const yMax = document.querySelector(".y-max");
+const zMax = document.querySelector(".z-max");
 
 const digit = 6; // 10^n
 const measureInterval = 100; // [ms]
@@ -80,17 +89,15 @@ function onClickClear() {
 }
 
 function onClickAnalyze() {
-  avgResult.innerHTML = `[Average] X : ${Math.round(
-    average(logX)
-  ).toLocaleString()}, Y : ${Math.round(
-    average(logY)
-  ).toLocaleString()}, Z : ${Math.round(average(logZ)).toLocaleString()}`;
-
-  maxResult.innerHTML = `[Max peak(abs)] X : ${maxPeak(
-    logX
-  ).toLocaleString()}, Y : ${maxPeak(logY).toLocaleString()}, Z : ${maxPeak(
-    logZ
-  ).toLocaleString()}`;
+  xAvg.innerHTML = Math.round(average(logX)).toLocaleString();
+  yAvg.innerHTML = Math.round(average(logY)).toLocaleString();
+  zAvg.innerHTML = Math.round(average(logZ)).toLocaleString();
+  xRmse.innerHTML = rmse(logX).toLocaleString();
+  yRmse.innerHTML = rmse(logY).toLocaleString();
+  zRmse.innerHTML = rmse(logZ).toLocaleString();
+  xMax.innerHTML = maxPeak(logX).toLocaleString();
+  yMax.innerHTML = maxPeak(logY).toLocaleString();
+  zMax.innerHTML = maxPeak(logZ).toLocaleString();
 }
 
 function initilizePlot() {
@@ -123,7 +130,12 @@ function handleMotion(event) {
 }
 
 function average(arr) {
-  const result = arr.reduce((p, c) => p + c, 0) / arr.length;
+  const result = arr.reduce((p, c) => p + Math.abs(c), 0) / arr.length;
+  return result;
+}
+
+function rmse(arr) {
+  const result = arr.reduce((p, c) => p + c ** 2, 0) / arr.length;
   return result;
 }
 
