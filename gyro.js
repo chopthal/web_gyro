@@ -92,9 +92,9 @@ function onClickAnalyze() {
   xAvg.innerHTML = Math.round(average(logX)).toLocaleString();
   yAvg.innerHTML = Math.round(average(logY)).toLocaleString();
   zAvg.innerHTML = Math.round(average(logZ)).toLocaleString();
-  xRmse.innerHTML = rmse(logX).toLocaleString();
-  yRmse.innerHTML = rmse(logY).toLocaleString();
-  zRmse.innerHTML = rmse(logZ).toLocaleString();
+  xRmse.innerHTML = Math.round(rmse(logX)).toLocaleString();
+  yRmse.innerHTML = Math.round(rmse(logY)).toLocaleString();
+  zRmse.innerHTML = Math.round(rmse(logZ)).toLocaleString();
   xMax.innerHTML = maxPeak(logX).toLocaleString();
   yMax.innerHTML = maxPeak(logY).toLocaleString();
   zMax.innerHTML = maxPeak(logZ).toLocaleString();
