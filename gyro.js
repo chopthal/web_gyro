@@ -6,6 +6,8 @@ const timeInput = document.querySelector(".time-input");
 const avgResult = document.querySelector(".average");
 const maxResult = document.querySelector(".max");
 
+const digit = 6;
+
 initilizePlot();
 
 let x = 0;
@@ -77,9 +79,9 @@ function onClickClear() {
 }
 
 function onClickAnalyze() {
-  avgResult.innerHTML = `[Average] X : ${average(logX)}, Y : ${average(
-    logY
-  )}, Z : ${average(logZ)}`;
+  avgResult.innerHTML = `[Average] X : ${Math.round(
+    average(logX)
+  )}, Y : ${Math.round(average(logY))}, Z : ${Math.round(average(logZ))}`;
 
   maxResult.innerHTML = `[Max peak(abs)] X : ${maxPeak(logX)}, Y : ${maxPeak(
     logY
@@ -110,9 +112,9 @@ function initilizePlot() {
 }
 
 function handleMotion(event) {
-  x = Math.round(event.acceleration.x);
-  y = Math.round(event.acceleration.y);
-  z = Math.round(event.acceleration.z);
+  x = Math.round(event.acceleration.x * 10 ** digit);
+  y = Math.round(event.acceleration.y * 10 ** digit);
+  z = Math.round(event.acceleration.z * 10 ** digit);
 }
 
 function average(arr) {
