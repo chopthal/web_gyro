@@ -6,7 +6,7 @@ const timeInput = document.querySelector(".time-input");
 const avgResult = document.querySelector(".average");
 const maxResult = document.querySelector(".max");
 
-const digit = 6;
+const digit = 10;
 
 initilizePlot();
 
