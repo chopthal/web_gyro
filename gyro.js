@@ -135,7 +135,7 @@ function average(arr) {
 }
 
 function rmse(arr) {
-  const result = arr.reduce((p, c) => p + c ** 2, 0) / arr.length;
+  const result = Math.sqrt(arr.reduce((p, c) => p + c ** 2, 0) / arr.length);
   return result;
 }
 
